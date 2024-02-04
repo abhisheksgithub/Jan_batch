@@ -1,6 +1,9 @@
 import http from 'http'
 import { URL } from 'url'
 import fs from 'fs'
+
+// Code to demo POST/GET and templates
+
 const dataStoreDir = `./dataStore/product.json`
 const templateDir = `./templates/`
 
