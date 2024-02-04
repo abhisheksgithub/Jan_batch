@@ -1,0 +1,14 @@
+{
+  "name": "session-2",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "threadPool": "set UV_THREADPOOL_SIZE=1 && node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
