@@ -2,8 +2,6 @@ import express from 'express'
 import fs from 'fs'
 import { recurssiveUpdate } from './utils/common.js'
 
-// Custom format when streaming data to client ?
-
 const app = express()
 
 app.use(express.json()) // middleware

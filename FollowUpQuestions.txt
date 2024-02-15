@@ -1,0 +1,3 @@
+
+1. Custom format when streaming data to client ?
+2. Changes or alterations to the data that is being streamed on the fly without putting it in the memory?
