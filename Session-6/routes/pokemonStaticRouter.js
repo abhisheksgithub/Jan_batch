@@ -12,8 +12,8 @@ pokemonStaticRouter
         console.log("import.meta.url", import.meta.url)
         console.log("path" ,filePath)
         console.log(path.join(filePath, '../../public'))
-
-        fs.readFile(`${path.join(filePath, '../../public')}/pokemon.html`, (err, data) => {
+        // console.log(__dirname)
+        fs.readFile(`./public/pokemon.html`, (err, data) => {
             // console.log("reached here", data, err)
             if (err) {
                 res.statusCode = 500

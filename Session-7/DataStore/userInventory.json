@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "username": "JaneDoe",
+    "email": "jane.doe@example.com",
+    "password": "hashed_password",
+    "location": "New York, NY"
+  },
+  {
+    "id": 2,
+    "username": "JohnSmith",
+    "email": "john.smith@example.com",
+    "password": "hashed_password",
+    "location": "San Francisco, CA"
+  }
+]

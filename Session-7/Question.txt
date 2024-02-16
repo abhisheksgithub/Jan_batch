@@ -1,0 +1,17 @@
+1. Create end points
+A. GET rest/v1/api/books
+B. GET rest/v1/api/books/1
+C. POST rest/v1/api/books
+D. PATCH rest/v1/api/books/2
+
+Borrowing 
+E. POST rest/v1/api/book/borrow --> { bookId: 4, userId: 2 }
+// Is the book id really there. Is the user a valid user. 
+// Server has to check if the book is in available status. If yes then update the transaction file
+// with borrowed status - status code (201)
+// If validation fails - Throw Bad request 400.  
+F. PATCH rest/v1/api/book/return --> { bookId: 4, userId: 2 }
+// Is the book id really there. Is the user a valid user. 
+// Server has to check if the book is in borrowed status. If yes then update the transaction file
+// with returned status - status code (201)
+// If validation fails - Throw Bad request 400.  

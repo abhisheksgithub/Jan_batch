@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "condition": "Good",
+    "genre": "Classic",
+    "status": "Available"
+  },
+  {
+    "id": 2,
+    "title": "1984",
+    "author": "George Orwell",
+    "condition": "Like New",
+    "genre": "Dystopian",
+    "status": "Available"
+  }
+]
