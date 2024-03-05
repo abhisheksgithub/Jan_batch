@@ -1,7 +1,6 @@
 import ProductModel from "../models/productModel.js";
 
 const getProduct = async (req, res) => {
-    console.log(req.query)
     try {
         let queryFilter = {...req.query}
 
@@ -45,6 +44,93 @@ const getProduct = async (req, res) => {
     }
 }
 
-export { getProduct }
+const aggregateProductUnwind = async (req, res) => {
+    try {
+        // Stage 1 -> filter category not equal to skincare
+        // Stage 2 -> 
+        const aggr = await ProductModel.aggregate([
+            {
+                $unwind: '$date'
+            },
+            {
+                $match: {
+                    date: {
+                        $gte: new Date('2020-01-01')
+                    }
+                }
+            },
+            {
+                $group: {
+                    _id: { $year : '$date' },
+                    products: {
+                        $push: { "title": '$title', "date": "$date"}
+                    }
+                }
+            }
+        ])
+
+        res.send({
+            status: 'success',
+            data: aggr,
+            count: aggr.length
+        })
+    } catch(e){
+        res.status(500).send({
+            status: 'failure',
+            err: e.message
+        })
+    }
+}
+
+
+const aggregateProduct = async (req, res) => {
+    try {
+        // Stage 1 -> filter category not equal to skincare
+        // Stage 2 -> 
+        const aggr = await ProductModel.aggregate([
+            {
+                $match: { category : { $ne: 'skincare' }}
+            },
+            {
+                $group: {
+                    _id: '$category',
+                    maxStock: { $max: '$stock' },
+                    avgPrice: { $avg: '$price' },
+                    maxPrice: { $max: '$price' },
+                    minPrice: { $min: '$price' },
+                    totalPrice: { $sum: '$price' },
+                    totalProducts: { $sum: 1 }
+                }
+            },
+            {
+                $sort: { totalPrice: -1 }
+            },
+            {
+                $match: { _id: { $ne: 'fra'} }
+            },
+            {
+                $addFields: { category: '$_id' }
+            },
+            {
+                $project: {
+                    _id: 0
+                }
+            }
+        ])
+
+        res.send({
+            status: 'success',
+            data: aggr,
+            count: aggr.length
+        })
+    } catch(e){
+        res.status(500).send({
+            status: 'failure',
+            err: e.message
+        })
+    }
+}
+
+export { getProduct, aggregateProduct, aggregateProductUnwind }
 
 // { price: { $gte: 500, $lte: 1000 } }
