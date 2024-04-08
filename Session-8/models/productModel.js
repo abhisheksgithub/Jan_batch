@@ -19,7 +19,7 @@ const productSchema = {
     },
     rating: {
         type: Number,
-        required: true
+        required: true,
     },
     stock: {
         type: Number,
@@ -45,3 +45,5 @@ const productSchema = {
 const pokemonSchema = new mongoose.Schema(productSchema)
 
 export default mongoose.model('ProductModel', pokemonSchema)
+
+// 

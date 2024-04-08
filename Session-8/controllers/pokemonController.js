@@ -1,37 +1,24 @@
 import PokemonMaster from "../models/pokemonModel.js"
+import ErrorWrapper from "../utils/ErrorWrapper.js"
 
-const getPokemon = async (req, res) => {
-    try {
+const getPokemon = ErrorWrapper(async (req, res, next) => {
         const data = await PokemonMaster.find()
-
         res.send({
             status: 'success',
             data,
             count: data.length
         })
+})
 
-    } catch (e) {
-        res.status(500).send({
-            status: 'failure',
-            err: e.message
-        })
-    }
-}
+// SLA
 
-const getSpecificPokemon = async (req, res) => {
-    try {
+const getSpecificPokemon = ErrorWrapper(async (req, res, next) => {
         const pokemon = await PokemonMaster.findById(req.params.id)
         res.send({
             status: 'success',
             data: pokemon
         })
-    } catch(e) {
-        res.status(500).send({
-            status: 'failure',
-            err: e.message
-        })
-    }
-}
+})
 
 
 const insertPokemon = async (req, res) => {
@@ -83,15 +70,8 @@ const removePokemon = async (req, res) => {
 export { getPokemon, insertPokemon, getSpecificPokemon, updatePokemon, removePokemon }
 
 
-
-
-
-// PokemonMaster.find()
-// .cursor()
-// .on('data', (data) => {
-//     // res.set('Content-Type', 'application/json')
-//     res.write(data.toString()) // sending the payload
-// })
-// .on('end', () => {
-//     res.send()
-// })
+// Sign in / up/ posts // User A --> all his posts // comments 
+// pass the token in the header --> UI
+// header Bearer authToken  
+// cookies  --> localhost ( httpOnly: true, secure: true ) --> XSS attacks
+// 

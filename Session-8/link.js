@@ -1,3 +1,14 @@
+
+
+class Node {
+    constructor(val) {
+        this.val = val
+        this.next = null
+    }
+}
+
+
+
 function createLink(val) {
     this.val = val
     this.next = null
